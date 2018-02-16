@@ -1,6 +1,6 @@
 import React, { Component } from 'react' 
 import { connect } from 'react-redux'
-import TaskCreator from './TaskCreator'
+import Task from './Task'
 
 class TaskList extends Component{
 	render(){
@@ -8,12 +8,11 @@ class TaskList extends Component{
 		const tasks = this.props.tasks;
 		return <div>
 		<ul>{this.getBody(tasks)}</ul>
-		<TaskCreator />
 		</div>;
 	};
 
 	getBody(tasks){
-		return <ul className = 'taskList'>{tasks.map((task) => <li className = 'taskList__element' key = {task.id}>{task.id}</li>)}</ul>
+		return <ul className = 'taskList'>{tasks.map((task) => <li key = {task.id} className = 'taskList__item'><Task task = {task} /></li>)}</ul>
 	}
 };
  

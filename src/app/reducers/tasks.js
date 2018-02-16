@@ -5,8 +5,9 @@ const task = (state, action) => {
 		case (ADD_TASK): 
 			return {
 					id: (new Date) + Math.random(),
-					text: action.text,
-					tags: action.tags,
+					title: action.payload.title,
+					text: action.payload.text,
+					tags: action.payload.tags,
 					dateToDo: action.dateToDo,
 					date: new Date(),
 			}
