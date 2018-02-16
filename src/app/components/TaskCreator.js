@@ -18,7 +18,6 @@ class TaskCreator extends Component{
 		this.handleTags = this.handleTags.bind(this)
 	}
 	render(){
-		console.log(this.state)
 		return (
 			<div>
 			<input type = 'button' onClick = {this.handleOpen} value = 'New Task'/>
@@ -51,9 +50,7 @@ class TaskCreator extends Component{
 		}
 		else{
 			 newTags = tags.slice(0, index).concat(tags.slice(index + 1, tags.length))
-			 console.log(newTags)
 		}
-		console.log(newTags)
 		this.setState({
 			tags: newTags
 		})

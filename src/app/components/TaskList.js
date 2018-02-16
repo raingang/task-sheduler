@@ -4,7 +4,6 @@ import Task from './Task'
 
 class TaskList extends Component{
 	render(){
-		console.log(this.props)
 		const tasks = this.props.tasks;
 		return <div>
 		<ul>{this.getBody(tasks)}</ul>
