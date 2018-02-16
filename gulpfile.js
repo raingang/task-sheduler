@@ -18,11 +18,12 @@ gulp.task('webpack', function () {
                     }
                 }]
             },
+            devtool: 'source-map',
             output: {
                 filename: 'app.js'
             }
         }))
-        .pipe(uglify())
+        //.pipe(uglify())
         .pipe(gulp.dest('./src/public'))
         .pipe(browserSync.stream());
 });
