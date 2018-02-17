@@ -1,8 +1,10 @@
-import { combineReducers } from 'redux'
+import {
+	combineReducers
+} from 'redux'
 import tasks from './tasks'
 
 const sheduler = combineReducers({
-  tasks
+	tasks
 })
 
 export default sheduler
