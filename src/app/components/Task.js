@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 const Task = (props)=> {
 		const { id, text, title, tags } = props.task
 		return( <div key = {id} className = 'task'>
+			<button onClick = {props.handleDelete} className = 'task__delete'>Delete</button>
 			<div className = 'task__title'>{title}</div>
 			<div className = 'task__text'>{text}</div>
 			<div className = 'task__tags'>{tags}</div>

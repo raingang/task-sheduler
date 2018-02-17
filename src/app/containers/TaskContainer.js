@@ -6,17 +6,18 @@ import {
 	connect
 } from 'react-redux'
 import {
-	completeTask
+	completeTask, deleteTask
 } from '../AC'
 
 class TaskContainer extends Component {
 	constructor(props) {
 		super(props)
 		this.handleCheckBox = this.handleCheckBox.bind(this)
+		this.handleDelete = this.handleDelete.bind(this)
 	}
 
 	render() {
-		return (<Task handleCheckBox = {this.handleCheckBox} task = {this.props.task} />)
+		return (<Task handleDelete = {this.handleDelete} handleCheckBox = {this.handleCheckBox} task = {this.props.task} />)
 	}
 
 	handleCheckBox() {
@@ -26,8 +27,17 @@ class TaskContainer extends Component {
 		} = this.props
 		completeTask(task.id)
 	}
+
+	handleDelete() {
+		const {
+			task,
+			deleteTask
+		} = this.props
+		deleteTask(task.id)
+	}
 }
 
 export default connect(null, {
-	completeTask
+	completeTask,
+	deleteTask
 })(TaskContainer)

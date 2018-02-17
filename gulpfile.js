@@ -2,6 +2,7 @@ const gulp = require('gulp'),
     webpack = require('webpack-stream'),
     browserSync = require('browser-sync'),
     sass = require('gulp-sass'),
+    wait = require('gulp-wait'),
     uglify = require('gulp-uglify');
 
 gulp.task('webpack', function () {
@@ -11,11 +12,15 @@ gulp.task('webpack', function () {
         .pipe(webpack({
             module: {
                 loaders: [{
+                    test: /\.js$/,
                     loader: 'babel-loader',
                     exclude: /node_modules/,
                     query: {
                         presets: ['es2015', 'react']
                     }
+                }, {
+                    test: /\.css$/,
+                    loader: 'css-loader',
                 }]
             },
             devtool: 'source-map',
@@ -30,8 +35,9 @@ gulp.task('webpack', function () {
 
 gulp.task('sass', function () {
     return gulp.src([
-            './src/scss/**/*.scss'
+            './src/scss/style.scss'
         ])
+        .pipe(wait(500))
         .pipe(sass())
         .pipe(gulp.dest('./src/public/css'))
         .pipe(browserSync.stream());

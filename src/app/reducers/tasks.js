@@ -1,6 +1,7 @@
 import {
 	ADD_TASK,
-	COMPLETE_TASK
+	COMPLETE_TASK,
+	DELETE_TASK
 } from '../constants'
 
 const task = (state, action) => {
@@ -44,6 +45,15 @@ const tasks = (state = [], action) => {
 				}
 			}, [])
 			return newState
+
+		case (DELETE_TASK):
+			return state.reduce((prev, item) => {
+				if (action.payload !== item.id) {
+					return prev.concat(item)
+				} else {
+					return prev
+				}
+			}, [])
 		default:
 			return state
 	}

@@ -1,0 +1,41 @@
+.taskCreator{
+	text-align: center;
+	background-color: #ffffff;
+	padding: 20px 10px;
+	&__open{
+		color: #fff;
+		background-color: #5e84ff;
+		border: none;
+		border-radius: 3px;
+		padding: 20px 0px;
+		width: 100%;
+		font-size: 18px;
+	}
+	&__form{
+		padding: 20px 0px;
+	}
+	&__title{
+		display: block;
+		width: calc(100% - 12px);
+		font-size: 18px;
+		padding: 10px 6px;
+		margin: 20px 0px;
+	}
+	&__text{
+		display: block;
+		width: calc(100% - 12px);
+		padding: 10px 6px;
+		height: 120px;
+	}
+
+	&__submit{
+		margin-top: 20px;
+		background-color: #00CC66;
+		border: none;
+		color: #fff;
+		border-radius: 3px;
+		padding: 20px 120px;
+		font-size: 18px;
+		width: 100%;
+	}
+}

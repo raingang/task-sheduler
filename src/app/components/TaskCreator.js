@@ -7,6 +7,7 @@ import {
 import {
 	connect
 } from 'react-redux'
+import DateRange from './DateRange'
 
 class TaskCreator extends Component {
 	render() {
@@ -15,8 +16,8 @@ class TaskCreator extends Component {
 			isOpen
 		} = this.props
 		return (
-			<div>
-			<input type = 'button' onClick = {handleOpen} value = 'New Task'/>
+			<div className = 'taskCreator'>
+			<input className = 'taskCreator__open' type = 'button' onClick = {handleOpen} value = 'New Task'/>
 			{isOpen ? this.getForm() : null}
 			</div>
 		)
@@ -35,16 +36,18 @@ class TaskCreator extends Component {
 			isOpen
 		} = this.props
 		return (
-			<form name = 'create_task'>
-						<input type = 'text' value = {title} onChange = {handleTitleChange}/> <br/>
-						<textarea  value = {text} onChange = {handleTextChange}></textarea> <br/>
-						<input onClick = {handleClick} type = 'button' /> <br/>
+			<form className = 'taskCreator__form' name = 'create_task'>
+						<DateRange />
+						<input className = 'taskCreator__title' type = 'text' value = {title} placeholder = {'Title...'} onChange = {handleTitleChange}/> 
+						<textarea  className = 'taskCreator__text' value = {text} onChange = {handleTextChange}></textarea> 
 						<select value = {tags} onChange = {handleTags} multiple size="4">
     					<option>Lifestyle</option>
     					<option>Family</option>
     					<option>Sport</option>
     					<option>Studying</option>
     					</select>
+    					
+						<input className = 'taskCreator__submit' onClick = {handleClick} type = 'button' value = 'Create Task'/> 			
 			</form>)
 	}
 }
