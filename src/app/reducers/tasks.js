@@ -4,6 +4,18 @@ import {
 	DELETE_TASK
 } from '../constants'
 
+
+const initialTasks = [{
+				id: (new Date) + Math.random(),
+				completed: true,
+				title: "Добавить возможность редактировать задачи",
+				text: "Необходимо создать новый action, reducer ...",
+				tags: ["lifestyle"],
+				endDate: new Date(),
+				date: new Date(),
+			}]
+
+
 const task = (state, action) => {
 	switch (action.type) {
 		case (ADD_TASK):
@@ -13,7 +25,7 @@ const task = (state, action) => {
 				title: action.payload.title,
 				text: action.payload.text,
 				tags: action.payload.tags,
-				dateToDo: action.dateToDo,
+				endDate: action.payload.endDate,
 				date: new Date(),
 			}
 
@@ -30,7 +42,7 @@ const task = (state, action) => {
 	}
 }
 
-const tasks = (state = [], action) => {
+const tasks = (state = initialTasks, action) => {
 	switch (action.type) {
 		case (ADD_TASK):
 			return [...state, task(state, action)]
@@ -47,6 +59,7 @@ const tasks = (state = [], action) => {
 			return newState
 
 		case (DELETE_TASK):
+			// создаёт новый массив, без удаённого элемента
 			return state.reduce((prev, item) => {
 				if (action.payload !== item.id) {
 					return prev.concat(item)

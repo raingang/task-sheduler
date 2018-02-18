@@ -16,15 +16,20 @@ class TaskCreatorContainer extends Component {
 			isOpen: false,
 			title: '',
 			text: '',
-			tags: []
+			tags: [],
+			endDate: null,
+			focusedDatesInput: null
 		}
 		this.handleTitleChange = this.handleTitleChange.bind(this)
 		this.handleTextChange = this.handleTextChange.bind(this)
 		this.handleClick = this.handleClick.bind(this)
 		this.handleOpen = this.handleOpen.bind(this)
 		this.handleTags = this.handleTags.bind(this)
+		this.handleDateChange = this.handleDateChange.bind(this)
+		this.handleDatesInput = this.handleDatesInput.bind(this)
 	}
 	render() {
+		console.log(this.state.endDate)
 		return (
 			<TaskCreator handleOpen = {this.handleOpen}
       handleTitleChange = {this.handleTitleChange}
@@ -35,6 +40,10 @@ class TaskCreatorContainer extends Component {
       title = {this.state.title}
       text = {this.state.text}
       tags = {this.state.tags}
+      focusedDatesInput = {this.state.focusedDatesInput}
+      endDate = {this.state.endDate}
+      handleDateChange = {this.handleDateChange}
+      handleDatesInput = {this.handleDatesInput}
       />
 		)
 	}
@@ -72,21 +81,24 @@ class TaskCreatorContainer extends Component {
 		const {
 			title,
 			text,
-			tags
+			tags,
+			endDate
 		} = this.state
 		const {
 			addTask
 		} = this.props
-		event.preventDefault()
 		let task = {
 			title,
 			text,
-			tags
+			tags,
+			endDate
 		}
 		addTask(task)
 		this.setState({
 			title: '',
-			text: ''
+			text: '',
+			endDate: null,
+			isOpen: false
 		})
 	}
 
@@ -94,6 +106,20 @@ class TaskCreatorContainer extends Component {
 		event.preventDefault()
 		this.setState({
 			isOpen: !this.state.isOpen
+		})
+	}
+
+	handleDateChange({
+		endDate
+	}) {
+		this.setState({
+			endDate
+		})
+	}
+
+	handleDatesInput(focusedDatesInput) {
+		this.setState({
+			focusedDatesInput
 		})
 	}
 

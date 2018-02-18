@@ -6,7 +6,8 @@ import {
 	connect
 } from 'react-redux'
 import {
-	completeTask, deleteTask
+	completeTask,
+	deleteTask
 } from '../AC'
 
 class TaskContainer extends Component {
@@ -28,7 +29,7 @@ class TaskContainer extends Component {
 		completeTask(task.id)
 	}
 
-	handleDelete() {
+	handleDelete(event) {
 		const {
 			task,
 			deleteTask

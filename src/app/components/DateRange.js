@@ -1,31 +1,40 @@
-import React, { Component } from 'react';
+import React, {
+  Component
+} from 'react';
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
-
-import { DateRangePicker } from 'react-dates';
+import moment from 'moment'
+import {
+  DateRangePicker
+} from 'react-dates';
 
 class DateRange extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      startDate: null,
       endDate: null,
       focusedInput: null,
     };
   }
 
   render() {
+    const {
+      focusedDatesInput,
+      endDate,
+      handleDateChange,
+      handleDatesInput
+    } = this.props
     return (
       <div className="App">
         <DateRangePicker
           numberOfMonths = {1}
           startDateId = {'startDate'}
           endDateId = {'endDate'}
-          startDate={this.state.startDate}
-          endDate={this.state.endDate}
-          onDatesChange={({ startDate, endDate }) => { this.setState({ startDate, endDate })}}
-          focusedInput={this.state.focusedInput}
-          onFocusChange={(focusedInput) => { this.setState({ focusedInput })}}
+          startDate={moment(Date.now())}
+          endDate={endDate}
+          onDatesChange={handleDateChange}
+          focusedInput={focusedDatesInput}
+          onFocusChange={handleDatesInput}
           block
         />
       </div>

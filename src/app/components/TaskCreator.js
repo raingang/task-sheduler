@@ -33,11 +33,15 @@ class TaskCreator extends Component {
 			title,
 			text,
 			handleTags,
-			isOpen
+			isOpen,
+			focusedDatesInput,
+			endDate,
+			handleDateChange,
+			handleDatesInput
 		} = this.props
 		return (
 			<form className = 'taskCreator__form' name = 'create_task'>
-						<DateRange />
+						<DateRange focusedDatesInput = {focusedDatesInput} endDate = {endDate} handleDateChange = {handleDateChange} handleDatesInput = {handleDatesInput}/>
 						<input className = 'taskCreator__title' type = 'text' value = {title} placeholder = {'Title...'} onChange = {handleTitleChange}/> 
 						<textarea  className = 'taskCreator__text' value = {text} onChange = {handleTextChange}></textarea> 
 						<select value = {tags} onChange = {handleTags} multiple size="4">

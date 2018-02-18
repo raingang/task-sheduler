@@ -20,7 +20,7 @@ export function completeTask(id) {
 
 export function deleteTask(id) {
 	return {
-		type: DELETE_TASK, 
+		type: DELETE_TASK,
 		payload: id
 	}
 }
