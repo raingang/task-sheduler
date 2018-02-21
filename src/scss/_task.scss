@@ -9,6 +9,25 @@
 
 .task{
 	padding: 14px 0px;
+	&__row{
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+	}
+	&__body{
+		margin-top: 10px;
+	}
+	&__status{
+		font-size: 0.8rem;
+		background-color: #4bdae2;
+		text-transform: uppercase;
+		text-align: center;
+		width: 120px;
+		padding: 4px 10px;
+		color: #fff;
+		font-weight: 600;
+		border-radius: 2px;
+	}
 	&__delete{
 		@extend %button;
 	}
@@ -16,7 +35,7 @@
 		@extend %button;
 	}
 	&__complete{
-		position: absolute;
+		position: relative;
 		right: 20px;
 		width: 2rem;
 		height: 2rem;

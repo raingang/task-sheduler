@@ -45,7 +45,7 @@ body {
     padding: 0px; }
   .tasks__wrapper {
     padding: 20px 0px;
-    width: 90%;
+    width: 350px;
     margin: 0 auto; }
 
 .task__delete, .task__edit {
@@ -58,8 +58,24 @@ body {
 
 .task {
   padding: 14px 0px; }
+  .task__row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; }
+  .task__body {
+    margin-top: 10px; }
+  .task__status {
+    font-size: 0.8rem;
+    background-color: #4bdae2;
+    text-transform: uppercase;
+    text-align: center;
+    width: 120px;
+    padding: 4px 10px;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 2px; }
   .task__complete {
-    position: absolute;
+    position: relative;
     right: 20px;
     width: 2rem;
     height: 2rem;

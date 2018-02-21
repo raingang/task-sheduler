@@ -6,14 +6,14 @@ import {
 
 
 const initialTasks = [{
-				id: (new Date) + Math.random(),
-				completed: true,
-				title: "Добавить возможность редактировать задачи",
-				text: "Необходимо создать новый action, reducer ...",
-				tags: ["lifestyle"],
-				endDate: new Date(),
-				date: new Date(),
-			}]
+	id: (new Date) + Math.random(),
+	completed: true,
+	title: "Добавить возможность редактировать задачи",
+	text: "Необходимо создать новый action, reducer ...",
+	tags: ["lifestyle"],
+	endDate: new Date(2018, 1, 22),
+	date: new Date(),
+}]
 
 
 const task = (state, action) => {

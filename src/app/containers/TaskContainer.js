@@ -13,12 +13,16 @@ import {
 class TaskContainer extends Component {
 	constructor(props) {
 		super(props)
+		this.state = {
+			toolsOpen: false
+		}
 		this.handleCheckBox = this.handleCheckBox.bind(this)
 		this.handleDelete = this.handleDelete.bind(this)
+		this.handleOpenTools = this.handleOpenTools.bind(this)
 	}
 
 	render() {
-		return (<Task handleDelete = {this.handleDelete} handleCheckBox = {this.handleCheckBox} task = {this.props.task} />)
+		return (<Task toolsOpen = {this.state.toolsOpen} handleOpenTools = {this.handleOpenTools} handleDelete = {this.handleDelete} handleCheckBox = {this.handleCheckBox} task = {this.props.task} />)
 	}
 
 	handleCheckBox() {
@@ -35,6 +39,11 @@ class TaskContainer extends Component {
 			deleteTask
 		} = this.props
 		deleteTask(task.id)
+	}
+	handleOpenTools(event) {
+		this.setState({
+			toolsOpen: !this.state.toolsOpen
+		})
 	}
 }
 
