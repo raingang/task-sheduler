@@ -8,22 +8,26 @@ import {
 	connect
 } from 'react-redux'
 import TaskCreator from '../components/TaskCreator'
+import { CREATOR_MODE, EDITOR_MODE} from '../constants'
+
 
 class TaskCreatorContainer extends Component {
 	constructor(props) {
 		super(props)
+		const {title = '', text = '', tags = [], endDate = null} = props.creator
+
+
 		this.state = {
-			isOpen: false,
-			title: '',
-			text: '',
-			tags: [],
+			title: title,
+			text: text,
+			tags: tags,
 			endDate: null,
 			focusedDatesInput: null
 		}
+
 		this.handleTitleChange = this.handleTitleChange.bind(this)
 		this.handleTextChange = this.handleTextChange.bind(this)
 		this.handleClick = this.handleClick.bind(this)
-		this.handleOpen = this.handleOpen.bind(this)
 		this.handleTags = this.handleTags.bind(this)
 		this.handleDateChange = this.handleDateChange.bind(this)
 		this.handleDatesInput = this.handleDatesInput.bind(this)
@@ -102,12 +106,6 @@ class TaskCreatorContainer extends Component {
 		})
 	}
 
-	handleOpen(event) {
-		event.preventDefault()
-		this.setState({
-			isOpen: !this.state.isOpen
-		})
-	}
 
 	handleDateChange({
 		endDate
@@ -125,14 +123,8 @@ class TaskCreatorContainer extends Component {
 
 }
 
+const mapStateToProps = (state) => ({
+	creator: state.creator
+})
 
-
-const mapDispatchToProps = (dispatch) => {
-	return {
-		addTask: (task) => {
-			dispatch(addTask(task))
-		}
-	}
-}
-
-export default connect(null, mapDispatchToProps)(TaskCreatorContainer)
+export default connect(mapStateToProps, {addTask})(TaskCreatorContainer)

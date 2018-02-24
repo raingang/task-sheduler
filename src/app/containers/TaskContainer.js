@@ -7,22 +7,24 @@ import {
 } from 'react-redux'
 import {
 	completeTask,
-	deleteTask
+	deleteTask,
+	editorMode,
 } from '../AC'
 
 class TaskContainer extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			toolsOpen: false
+			toolsOpen: false,
 		}
 		this.handleCheckBox = this.handleCheckBox.bind(this)
 		this.handleDelete = this.handleDelete.bind(this)
 		this.handleOpenTools = this.handleOpenTools.bind(this)
+		this.handleEdit = this.handleEdit.bind(this)
 	}
 
 	render() {
-		return (<Task toolsOpen = {this.state.toolsOpen} handleOpenTools = {this.handleOpenTools} handleDelete = {this.handleDelete} handleCheckBox = {this.handleCheckBox} task = {this.props.task} />)
+		return (<Task handleEdit = {this.handleEdit} toolsOpen = {this.state.toolsOpen} handleOpenTools = {this.handleOpenTools} handleDelete = {this.handleDelete} handleCheckBox = {this.handleCheckBox} task = {this.props.task} />)
 	}
 
 	handleCheckBox() {
@@ -40,6 +42,9 @@ class TaskContainer extends Component {
 		} = this.props
 		deleteTask(task.id)
 	}
+	handleEdit(event){
+		this.props.editorMode(this.props.task)		
+	}
 	handleOpenTools(event) {
 		this.setState({
 			toolsOpen: !this.state.toolsOpen
@@ -49,5 +54,6 @@ class TaskContainer extends Component {
 
 export default connect(null, {
 	completeTask,
-	deleteTask
+	deleteTask,
+	editorMode
 })(TaskContainer)

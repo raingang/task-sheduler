@@ -2,7 +2,7 @@ import React, {
 	Component
 } from 'react';
 import ReactDom from 'react-dom';
-import App from './components/App'
+import AppContainer from './containers/AppContainer'
 import {
 	Provider
 } from 'react-redux'
@@ -15,4 +15,4 @@ let store = createStore(sheduler)
 
 window.store = store // только для разработки, получать ссылку на стор из консоли
 
-ReactDom.render(<Provider store = {store}><App /></Provider>, document.getElementById('root'));
+ReactDom.render(<Provider store = {store}><AppContainer /></Provider>, document.getElementById('root'));

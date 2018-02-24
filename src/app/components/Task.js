@@ -5,11 +5,16 @@ import {
 	getExecutionStatus,
 	dateToString
 } from '../utils'
+import TaskCreatorContainer from '../containers/TaskCreatorContainer'
 
 const Task = (props) => {
 	const { 
 		toolsOpen,
-		handleOpenTools
+		editOpen,
+		handleEdit,
+		handleDelete,
+		handleOpenTools,
+		task
 	} = props
 	const {
 		id,
@@ -19,22 +24,27 @@ const Task = (props) => {
 		completed,
 		endDate,
 		date,
-	} = props.task
+	} = task
 
+
+	function getEditTask(){
+		return editOpen ? <TaskCreatorContainer task = {task}/> : null
+	}
 
 	function getTools(){
 		function stopPropagation(event){
-			console.log('dsg')
 			event.stopPropagation()
 		}
 		return (
 		<div onClick = {stopPropagation} className = 'task__tools'>
-			<button  onClick = {props.handleDelete} className = 'task__delete'>Delete</button>
-			<button className = 'task__edit'>Edit</button>
+			<button  onClick = {handleDelete} className = 'task__delete'>Delete</button>
+			<button onClick = {handleEdit} className = 'task__edit'>Edit</button>
 			<input checked = {completed} className = 'task__complete' onChange = {props.handleCheckBox} type = 'checkbox' />
+			{getEditTask()}
 		</div>
 		)
 	}
+	
 	return (<div onClick = {handleOpenTools} key = {id} className = 'task' >		
 			<div className = 'task__row'>
 			<div  className = 'task__status'>{getExecutionStatus(date, endDate)}</div>

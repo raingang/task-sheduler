@@ -12,28 +12,13 @@ import DateRange from './DateRange'
 class TaskCreator extends Component {
 	render() {
 		const {
-			handleOpen,
-			isOpen
-		} = this.props
-		return (
-			<div className = 'taskCreator'>
-			<input className = 'taskCreator__open' type = 'button' onClick = {handleOpen} value = 'New Task'/>
-			{isOpen ? this.getForm() : null}
-			</div>
-		)
-	}
-
-	getForm() {
-		const {
 			handleClick,
-			handleOpen,
 			handleTextChange,
 			handleTitleChange,
 			tags,
 			title,
 			text,
 			handleTags,
-			isOpen,
 			focusedDatesInput,
 			endDate,
 			handleDateChange,
