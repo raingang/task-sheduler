@@ -1,7 +1,8 @@
 import {
 	ADD_TASK,
 	COMPLETE_TASK,
-	DELETE_TASK
+	DELETE_TASK,
+	EDIT_TASK
 } from '../constants'
 
 
@@ -10,7 +11,6 @@ const initialTasks = [{
 	completed: true,
 	title: "Добавить возможность редактировать задачи",
 	text: "Необходимо создать новый action, reducer ...",
-	tags: ["lifestyle"],
 	endDate: new Date(2018, 1, 22),
 	date: new Date(),
 }]
@@ -24,7 +24,6 @@ const task = (state, action) => {
 				completed: false,
 				title: action.payload.title,
 				text: action.payload.text,
-				tags: action.payload.tags,
 				endDate: action.payload.endDate,
 				date: new Date(),
 			}
@@ -46,6 +45,7 @@ const tasks = (state = initialTasks, action) => {
 	switch (action.type) {
 		case (ADD_TASK):
 			return [...state, task(state, action)]
+
 		case (COMPLETE_TASK):
 			// создаёт новый массив, где старый таск меняется на копию с новым состоянием
 			const completedTask = task(state, action)
@@ -58,6 +58,16 @@ const tasks = (state = initialTasks, action) => {
 			}, [])
 			return newState
 
+		case(EDIT_TASK):
+			const newTask = action.payload
+			return state.reduce((prev, item)=>{
+				if(newTask.id !== item.id){
+					return prev.concat(item)
+				} else{
+					return prev.concat(newTask)
+				}
+			},[])
+
 		case (DELETE_TASK):
 			// создаёт новый массив, без удаённого элемента
 			return state.reduce((prev, item) => {
@@ -67,6 +77,7 @@ const tasks = (state = initialTasks, action) => {
 					return prev
 				}
 			}, [])
+			
 		default:
 			return state
 	}

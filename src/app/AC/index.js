@@ -2,8 +2,10 @@ import {
 	ADD_TASK,
 	COMPLETE_TASK,
 	DELETE_TASK,
+	EDIT_TASK,
 	CREATOR_MODE,
-	EDITOR_MODE
+	EDITOR_MODE,
+	SET_VISIBILITY_FILTER
 } from '../constants'
 
 export function addTask(task) {
@@ -27,6 +29,13 @@ export function deleteTask(id) {
 	}
 }
 
+export function editTask(editedTask) {
+	return {
+		type: EDIT_TASK,
+		payload: editedTask
+	}
+}
+
 export function creatorMode(){
 	console.log(CREATOR_MODE)
 	return {
@@ -38,5 +47,12 @@ export function editorMode(task){
 	return {
 		type: EDITOR_MODE,
 		task: task
+	}
+}
+
+export function setVisibilityFilter(filter){
+	return {
+		type: SET_VISIBILITY_FILTER,
+		filter
 	}
 }

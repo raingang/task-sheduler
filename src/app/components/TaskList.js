@@ -5,6 +5,19 @@ import {
 	connect
 } from 'react-redux'
 import TaskContainer from '../containers/TaskContainer'
+import { SHOW_ALL, SHOW_COMPLETED, SHOW_ACTIVE} from '../constants'
+
+const getVisibleTasks = (tasks, filter) => {
+  switch (filter) {
+    case SHOW_ALL:
+      return tasks
+    case SHOW_COMPLETED:
+      return tasks.filter(t => t.completed)
+    case SHOW_ACTIVE:
+      return tasks.filter(t => !t.completed)
+  }
+}
+
 
 class TaskList extends Component {
 	render() {
@@ -22,7 +35,7 @@ class TaskList extends Component {
 };
 
 const mapStateToProps = (state) => ({
-	tasks: state.tasks,
+	tasks: getVisibleTasks(state.tasks, state.visibilityFilter),
 });
 
 export default connect(mapStateToProps)(TaskList);

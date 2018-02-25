@@ -53,7 +53,6 @@ const Task = (props) => {
 			<div className = 'task__body'>		
 			<div className = 'task__title'>{title}</div>
 			<div className = 'task__text'>{text}</div>
-			<div className = 'task__tags'>{tags}</div>
 			{toolsOpen ? getTools() : null}
 			</div>
 			</div>)
