@@ -1,4 +1,4 @@
-.taskCreator{
+.taskCreator{	
 	top: 0px;
 	right: 0px;
 	z-index: 1;
@@ -9,15 +9,16 @@
 	text-align: center;
 	background-color: #ffffff;
 	&__wrapper{
-		width: 90%;
+		width: 85%;
 		margin: 0 auto;
 	}
 	&__open{
+		cursor: pointer;
 		color: #fff;
 		background-color: #5e84ff;
 		border: none;
 		border-radius: 3px;
-		padding: 20px 0px;
+		padding: 16px 0px;
 		width: 100%;
 		font-size: 18px;
 	}

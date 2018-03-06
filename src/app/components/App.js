@@ -13,10 +13,10 @@ class App extends Component {
 	}
 	render() {
 		return (
-			<div>
-				<Navigation />
-            	{this.getCreator()}
-                <TaskList />                
+			<div className = 'app'>
+				<Navigation />            	
+                <TaskList />    
+                {this.getCreator()}            
             </div>
 		);
 	}

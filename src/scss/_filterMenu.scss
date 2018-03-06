@@ -1,0 +1,28 @@
+$tablet-width: 768px;
+
+.filterMenu{
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	@media(min-width: $tablet-width){
+		margin-top: 40px;
+		display: flex;
+		flex-direction: column;
+	}
+	&__filter{
+		padding: 20px 0px;
+		color: #57606f;
+		font-size: 1.5rem;
+		background-color: transparent;
+		border: none;
+		cursor: pointer;
+		&:focus{
+			outline: none;
+		}
+		&--active{
+			border-bottom: 4px solid #5f85ff;
+			border-radius: 3px;
+		}
+	}
+}

@@ -4,14 +4,30 @@ import {
 	DELETE_TASK,
 	EDIT_TASK
 } from '../constants'
-
+import moment from 'moment'
 
 const initialTasks = [{
 	id: (new Date) + Math.random(),
 	completed: true,
 	title: "Добавить возможность редактировать задачи",
-	text: "Необходимо создать новый action, reducer ...",
-	endDate: new Date(2018, 1, 22),
+	text: "Необходимо создать новый action, reducer ...Необходимо создать новый action, reducer ...Необходимо создать новый action, reducer ...Необходимо создать новый action, reducer ...Необходимо создать новый action, reducer ...Необходимо создать новый action, reducer ...Необходимо создать новый action, reducer ...Необходимо создать новый action, reducer ...Необходимо создать новый action, reducer ...Необходимо создать новый action, reducer ...",
+	endDate: moment(new Date(2018, 1, 22).valueOf()),
+	date: new Date(),
+},
+{
+	id: (new Date) + Math.random(),
+	completed: true,
+	title: "Добавить возможность редактировать задачи",
+	text: "Необходимо создать новый action, reducer ...Необходимо создать новый action, reducer ...Необходимо создать новый action, reducer ...Необходимо создать новый action, reducer ...Необходимо создать новый action, reducer ...Необходимо создать новый action, reducer ...Необходимо создать новый action, reducer ...Необходимо создать новый action, reducer ...Необходимо создать новый action, reducer ...Необходимо создать новый action, reducer ...",
+	endDate: moment(new Date(2018, 1, 22).valueOf()),
+	date: new Date(),
+},
+{
+	id: (new Date) + Math.random(),
+	completed: true,
+	title: "Добавить возможность редактировать задачи",
+	text: "Необходимо создать новый action, reducer ...Необходимо создать новый action, reducer ...Необходимо создать новый action, reducer ...Необходимо создать новый action, reducer ...Необходимо создать новый action, reducer ...Необходимо создать новый action, reducer ...Необходимо создать новый action, reducer ...Необходимо создать новый action, reducer ...Необходимо создать новый action, reducer ...Необходимо создать новый action, reducer ...",
+	endDate: moment(new Date(2018, 1, 22).valueOf()),
 	date: new Date(),
 }]
 

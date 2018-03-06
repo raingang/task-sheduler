@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import { SHOW_ALL, SHOW_COMPLETED, SHOW_ACTIVE} from '../constants'
+import classNames from 'classnames'
 
 class FilterMenu extends Component{
 	constructor(props){
@@ -7,11 +8,15 @@ class FilterMenu extends Component{
 		this.handleFilterClick = this.handleFilterClick.bind(this)
 	}
 	render(){
+		const { visibilityFilter } = this.props
 		return (
-			<div className = 'filter_menu'>
-			<button onClick = {this.handleFilterClick(SHOW_ALL)} className = 'filter_menu__filter'>All</button>
-			<button onClick = {this.handleFilterClick(SHOW_ACTIVE)} className = 'filter_menu__filter'>Active</button>
-			<button onClick = {this.handleFilterClick(SHOW_COMPLETED)} className = 'filter_menu__filter'>Completed</button>
+			<div className = 'filterMenu'>
+			<button onClick = {this.handleFilterClick(SHOW_ALL)} className = {classNames('filterMenu__filter', 
+																			  			{'filterMenu__filter--active': visibilityFilter == SHOW_ALL})}>All</button>
+			<button onClick = {this.handleFilterClick(SHOW_ACTIVE)} className = {classNames('filterMenu__filter', 
+																			  			{'filterMenu__filter--active': visibilityFilter == SHOW_ACTIVE})}>Active</button>
+			<button onClick = {this.handleFilterClick(SHOW_COMPLETED)} className = {classNames('filterMenu__filter', 
+																			  			{'filterMenu__filter--active': visibilityFilter == SHOW_COMPLETED})}>Completed</button>
 			</div>
 			)
 	}

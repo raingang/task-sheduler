@@ -18,17 +18,15 @@ const getVisibleTasks = (tasks, filter) => {
   }
 }
 
-
 class TaskList extends Component {
 	render() {
 		const tasks = this.props.tasks;
-		return <div className = 'tasks'>
+		return <section className = 'tasks'>
 			<div className = 'tasks__wrapper'>
 		{this.getBody(tasks)}
 		</div>
-		</div>
+		</section>
 	};
-
 	getBody(tasks) {
 		return <ul className = 'tasks__list'>{tasks.map((task) => <li key = {task.id} className = 'tasks__item'><TaskContainer task = {task} /></li>)}</ul>
 	}

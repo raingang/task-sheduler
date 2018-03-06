@@ -12689,6 +12689,7 @@ var TaskCreatorContainer = function (_Component) {
 		_this.handleClick = _this.handleClick.bind(_this);
 		_this.handleDateChange = _this.handleDateChange.bind(_this);
 		_this.handleDatesInput = _this.handleDatesInput.bind(_this);
+		_this.handleBackClick = _this.handleBackClick.bind(_this);
 		return _this;
 	}
 
@@ -12715,6 +12716,9 @@ var TaskCreatorContainer = function (_Component) {
 				title: event.target.value
 			});
 		}
+	}, {
+		key: 'handleBackClick',
+		value: function handleBackClick() {}
 	}, {
 		key: 'handleTextChange',
 		value: function handleTextChange(event) {
@@ -19744,10 +19748,10 @@ var App = function (_Component) {
 		value: function render() {
 			return _react2.default.createElement(
 				'div',
-				null,
+				{ className: 'app' },
 				_react2.default.createElement(_Navigation2.default, null),
-				this.getCreator(),
-				_react2.default.createElement(_TaskList2.default, null)
+				_react2.default.createElement(_TaskList2.default, null),
+				this.getCreator()
 			);
 		}
 	}]);
@@ -19819,7 +19823,7 @@ var TaskList = function (_Component) {
 		value: function render() {
 			var tasks = this.props.tasks;
 			return _react2.default.createElement(
-				'div',
+				'section',
 				{ className: 'tasks' },
 				_react2.default.createElement(
 					'div',
@@ -20161,6 +20165,11 @@ var TaskCreator = function (_Component) {
 				_react2.default.createElement(
 					'div',
 					{ className: 'taskCreator__wrapper' },
+					_react2.default.createElement(
+						'div',
+						{ className: 'taskCreator__goBack' },
+						_react2.default.createElement('input', { type: 'button', value: 'Go back' })
+					),
 					_react2.default.createElement(
 						'form',
 						{ className: 'taskCreator__form', name: 'create_task' },
@@ -40042,10 +40051,14 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var Navigation = function Navigation(props) {
 	return _react2.default.createElement(
-		'div',
-		null,
-		_react2.default.createElement(_AddTaskButtonContainer2.default, null),
-		_react2.default.createElement(_FilterMenuContainer2.default, null)
+		'section',
+		{ className: 'navigation' },
+		_react2.default.createElement(
+			'div',
+			{ className: 'navigation__wrapper' },
+			_react2.default.createElement(_AddTaskButtonContainer2.default, null),
+			_react2.default.createElement(_FilterMenuContainer2.default, null)
+		)
 	);
 };
 
@@ -40104,7 +40117,6 @@ var AddTaskButtonContainer = function (_Component) {
 	}, {
 		key: 'handleClick',
 		value: function handleClick() {
-			console.log('sa');
 			this.props.creatorMode();
 		}
 	}]);
@@ -40158,7 +40170,9 @@ var _AC = __webpack_require__(37);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.default = (0, _reactRedux.connect)(null, { setVisibilityFilter: _AC.setVisibilityFilter })(_FilterMenu2.default);
+exports.default = (0, _reactRedux.connect)(function (state) {
+  return { visibilityFilter: state.visibilityFilter };
+}, { setVisibilityFilter: _AC.setVisibilityFilter })(_FilterMenu2.default);
 
 /***/ }),
 /* 342 */
@@ -40178,6 +40192,10 @@ var _react = __webpack_require__(2);
 var _react2 = _interopRequireDefault(_react);
 
 var _constants = __webpack_require__(27);
+
+var _classnames = __webpack_require__(562);
+
+var _classnames2 = _interopRequireDefault(_classnames);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -40202,22 +40220,24 @@ var FilterMenu = function (_Component) {
 	_createClass(FilterMenu, [{
 		key: 'render',
 		value: function render() {
+			var visibilityFilter = this.props.visibilityFilter;
+
 			return _react2.default.createElement(
 				'div',
-				{ className: 'filter_menu' },
+				{ className: 'filterMenu' },
 				_react2.default.createElement(
 					'button',
-					{ onClick: this.handleFilterClick(_constants.SHOW_ALL), className: 'filter_menu__filter' },
+					{ onClick: this.handleFilterClick(_constants.SHOW_ALL), className: (0, _classnames2.default)('filterMenu__filter', { 'filterMenu__filter--active': visibilityFilter == _constants.SHOW_ALL }) },
 					'All'
 				),
 				_react2.default.createElement(
 					'button',
-					{ onClick: this.handleFilterClick(_constants.SHOW_ACTIVE), className: 'filter_menu__filter' },
+					{ onClick: this.handleFilterClick(_constants.SHOW_ACTIVE), className: (0, _classnames2.default)('filterMenu__filter', { 'filterMenu__filter--active': visibilityFilter == _constants.SHOW_ACTIVE }) },
 					'Active'
 				),
 				_react2.default.createElement(
 					'button',
-					{ onClick: this.handleFilterClick(_constants.SHOW_COMPLETED), className: 'filter_menu__filter' },
+					{ onClick: this.handleFilterClick(_constants.SHOW_COMPLETED), className: (0, _classnames2.default)('filterMenu__filter', { 'filterMenu__filter--active': visibilityFilter == _constants.SHOW_COMPLETED }) },
 					'Completed'
 				)
 			);
@@ -40286,14 +40306,34 @@ Object.defineProperty(exports, "__esModule", {
 
 var _constants = __webpack_require__(27);
 
+var _moment = __webpack_require__(0);
+
+var _moment2 = _interopRequireDefault(_moment);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 var initialTasks = [{
 	id: new Date() + Math.random(),
 	completed: true,
 	title: "Добавить возможность редактировать задачи",
-	text: "Необходимо создать новый action, reducer ...",
-	endDate: new Date(2018, 1, 22),
+	text: "Необходимо создать новый action, reducer ...Необходимо создать новый action, reducer ...Необходимо создать новый action, reducer ...Необходимо создать новый action, reducer ...Необходимо создать новый action, reducer ...Необходимо создать новый action, reducer ...Необходимо создать новый action, reducer ...Необходимо создать новый action, reducer ...Необходимо создать новый action, reducer ...Необходимо создать новый action, reducer ...",
+	endDate: (0, _moment2.default)(new Date(2018, 1, 22).valueOf()),
+	date: new Date()
+}, {
+	id: new Date() + Math.random(),
+	completed: true,
+	title: "Добавить возможность редактировать задачи",
+	text: "Необходимо создать новый action, reducer ...Необходимо создать новый action, reducer ...Необходимо создать новый action, reducer ...Необходимо создать новый action, reducer ...Необходимо создать новый action, reducer ...Необходимо создать новый action, reducer ...Необходимо создать новый action, reducer ...Необходимо создать новый action, reducer ...Необходимо создать новый action, reducer ...Необходимо создать новый action, reducer ...",
+	endDate: (0, _moment2.default)(new Date(2018, 1, 22).valueOf()),
+	date: new Date()
+}, {
+	id: new Date() + Math.random(),
+	completed: true,
+	title: "Добавить возможность редактировать задачи",
+	text: "Необходимо создать новый action, reducer ...Необходимо создать новый action, reducer ...Необходимо создать новый action, reducer ...Необходимо создать новый action, reducer ...Необходимо создать новый action, reducer ...Необходимо создать новый action, reducer ...Необходимо создать новый action, reducer ...Необходимо создать новый action, reducer ...Необходимо создать новый action, reducer ...Необходимо создать новый action, reducer ...",
+	endDate: (0, _moment2.default)(new Date(2018, 1, 22).valueOf()),
 	date: new Date()
 }];
 
@@ -61430,6 +61470,61 @@ function isInclusivelyBeforeDay(a, b) {
   if (!_moment2['default'].isMoment(a) || !_moment2['default'].isMoment(b)) return false;
   return !(0, _isAfterDay2['default'])(a, b);
 }
+
+/***/ }),
+/* 562 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
+  Copyright (c) 2016 Jed Watson.
+  Licensed under the MIT License (MIT), see
+  http://jedwatson.github.io/classnames
+*/
+/* global define */
+
+(function () {
+	'use strict';
+
+	var hasOwn = {}.hasOwnProperty;
+
+	function classNames () {
+		var classes = [];
+
+		for (var i = 0; i < arguments.length; i++) {
+			var arg = arguments[i];
+			if (!arg) continue;
+
+			var argType = typeof arg;
+
+			if (argType === 'string' || argType === 'number') {
+				classes.push(arg);
+			} else if (Array.isArray(arg)) {
+				classes.push(classNames.apply(null, arg));
+			} else if (argType === 'object') {
+				for (var key in arg) {
+					if (hasOwn.call(arg, key) && arg[key]) {
+						classes.push(key);
+					}
+				}
+			}
+		}
+
+		return classes.join(' ');
+	}
+
+	if (typeof module !== 'undefined' && module.exports) {
+		module.exports = classNames;
+	} else if (true) {
+		// register as 'classnames', consistent with npm package name
+		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = (function () {
+			return classNames;
+		}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	} else {
+		window.classNames = classNames;
+	}
+}());
+
 
 /***/ })
 /******/ ]);

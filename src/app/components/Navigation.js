@@ -4,10 +4,12 @@ import FilterMenuContainer from '../containers/FilterMenuContainer'
 
 const Navigation = (props) => {
 	return(
-		<div>
+		<section className = 'navigation'>
+		<div className = 'navigation__wrapper'>
 		<AddTaskButtonContainer />
 		<FilterMenuContainer />
 		</div>
+		</section>
 		)
 }
 

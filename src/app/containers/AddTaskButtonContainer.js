@@ -16,7 +16,6 @@ class AddTaskButtonContainer extends Component{
 	}
 
 	handleClick(){
-		console.log('sa')
 		this.props.creatorMode()
 	}
 }

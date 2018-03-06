@@ -1,13 +1,22 @@
+$tablet-width: 768px;
+
 .tasks{
 	color: #737b88;
+	@media(min-width: $tablet-width){
+		margin-left: 270px;
+	}
 	&__list{
 		list-style: none;
 		margin: 0px;
 		padding: 0px;
 	}
 	&__wrapper{
-		padding: 20px 0px;
-		width: 350px;
+		width: 300px;
 		margin: 0 auto;
+		@media(min-width: $tablet-width){
+			padding: 20px 40px;
+			width: 350px;
+			margin: 0 auto;
+		}
 	}
 }

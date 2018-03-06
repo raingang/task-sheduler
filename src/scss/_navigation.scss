@@ -1,0 +1,17 @@
+$tablet-width: 768px;
+
+.navigation{
+	@media(min-width: $tablet-width){
+		width: 250px;
+		background-color: #fff;
+		height: 100%;
+		position: fixed;
+	}
+	&__wrapper{
+		@media(min-width: $tablet-width){
+			padding-top: 20px;
+			width: 80%;
+			margin: 0 auto;
+		}
+	}
+}

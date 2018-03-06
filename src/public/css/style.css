@@ -2,6 +2,10 @@ body {
   margin: 0px;
   background-color: #f8f9fb; }
 
+@media (min-width: 768px) {
+  .app {
+    display: flex; } }
+
 .taskCreator {
   top: 0px;
   right: 0px;
@@ -13,14 +17,15 @@ body {
   text-align: center;
   background-color: #ffffff; }
   .taskCreator__wrapper {
-    width: 90%;
+    width: 85%;
     margin: 0 auto; }
   .taskCreator__open {
+    cursor: pointer;
     color: #fff;
     background-color: #5e84ff;
     border: none;
     border-radius: 3px;
-    padding: 20px 0px;
+    padding: 16px 0px;
     width: 100%;
     font-size: 18px; }
   .taskCreator__form {
@@ -52,14 +57,21 @@ body {
 
 .tasks {
   color: #737b88; }
+  @media (min-width: 768px) {
+    .tasks {
+      margin-left: 270px; } }
   .tasks__list {
     list-style: none;
     margin: 0px;
     padding: 0px; }
   .tasks__wrapper {
-    padding: 20px 0px;
-    width: 350px;
+    width: 300px;
     margin: 0 auto; }
+    @media (min-width: 768px) {
+      .tasks__wrapper {
+        padding: 20px 40px;
+        width: 350px;
+        margin: 0 auto; } }
 
 .task__delete, .task__edit {
   background-color: transparent;
@@ -70,6 +82,7 @@ body {
   cursor: pointer; }
 
 .task {
+  cursor: pointer;
   padding: 14px 0px; }
   .task__row {
     display: flex;
@@ -87,12 +100,52 @@ body {
     color: #fff;
     font-weight: 600;
     border-radius: 2px; }
+  .task__tools {
+    margin-top: 10px; }
   .task__complete {
-    position: relative;
-    right: 20px;
-    border: none;
-    background: none;
-    background-color: #000; }
+    width: 20px;
+    height: 20px;
+    background-color: red; }
+    .task__complete:after {
+      width: 9px;
+      height: 9px;
+      background: transparent; }
   .task__title {
     font-weight: 600;
     margin-bottom: 8px; }
+
+.filterMenu {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around; }
+  @media (min-width: 768px) {
+    .filterMenu {
+      margin-top: 40px;
+      display: flex;
+      flex-direction: column; } }
+  .filterMenu__filter {
+    padding: 20px 0px;
+    color: #57606f;
+    font-size: 1.5rem;
+    background-color: transparent;
+    border: none;
+    cursor: pointer; }
+    .filterMenu__filter:focus {
+      outline: none; }
+    .filterMenu__filter--active {
+      border-bottom: 4px solid #5f85ff;
+      border-radius: 3px; }
+
+@media (min-width: 768px) {
+  .navigation {
+    width: 250px;
+    background-color: #fff;
+    height: 100%;
+    position: fixed; } }
+
+@media (min-width: 768px) {
+  .navigation__wrapper {
+    padding-top: 20px;
+    width: 80%;
+    margin: 0 auto; } }

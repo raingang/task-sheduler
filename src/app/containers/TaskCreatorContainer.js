@@ -28,6 +28,7 @@ class TaskCreatorContainer extends Component {
 		this.handleClick = this.handleClick.bind(this)
 		this.handleDateChange = this.handleDateChange.bind(this)
 		this.handleDatesInput = this.handleDatesInput.bind(this)
+		this.handleBackClick = this.handleBackClick.bind(this)
 	}
 	render() {
 		console.log(this.state.endDate)
@@ -50,6 +51,9 @@ class TaskCreatorContainer extends Component {
 		this.setState({
 			title: event.target.value
 		})
+	}
+	handleBackClick(){
+
 	}
 
 	handleTextChange(event) {
