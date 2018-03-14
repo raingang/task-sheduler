@@ -50,7 +50,8 @@ body {
     border-radius: 3px;
     padding: 20px 0px;
     font-size: 18px;
-    width: 100%; }
+    width: 100%;
+    cursor: pointer; }
   .taskCreator__goBack {
     margin-top: 20px;
     font-size: 18px;
@@ -59,7 +60,8 @@ body {
     border: none;
     background-color: #669999;
     border-radius: 3px;
-    padding: 20px 0px; }
+    padding: 20px 0px;
+    cursor: pointer; }
 
 .tasks {
   color: #737b88; }

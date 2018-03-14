@@ -44,7 +44,7 @@ const Task = (props) => {
 		</div>
 		)
 	}
-	
+	console.log('task rendered')
 	return (<div onClick = {handleOpenTools} key = {id} className = 'task' >		
 			<div className = 'task__row'>
 			<div  className = 'task__status'>{getExecutionStatus(date, endDate)}</div>

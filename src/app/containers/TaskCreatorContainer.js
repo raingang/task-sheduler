@@ -86,6 +86,7 @@ class TaskCreatorContainer extends Component {
 			text: '',
 			endDate: null,
 		})
+		this.props.closeCreator()
 	}
 
 

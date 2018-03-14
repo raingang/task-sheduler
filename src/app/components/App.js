@@ -4,6 +4,7 @@ import React, {
 import TaskList from './TaskList'
 import Navigation from './Navigation'
 import TaskCreatorContainer from '../containers/TaskCreatorContainer'
+import TaskListContainer from '../containers/TaskListContainer'
 import {connect} from 'react-redux'
 
 
@@ -15,7 +16,7 @@ class App extends Component {
 		return (
 			<div className = 'app'>
 				<Navigation />            	
-                <TaskList />    
+                <TaskListContainer />
                 {this.getCreator()}            
             </div>
 		);

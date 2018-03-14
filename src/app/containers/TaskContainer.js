@@ -42,9 +42,11 @@ class TaskContainer extends Component {
 		} = this.props
 		deleteTask(task.id)
 	}
+
 	handleEdit(event){
 		this.props.editorMode(this.props.task)		
 	}
+
 	handleOpenTools(event) {
 		this.setState({
 			toolsOpen: !this.state.toolsOpen
