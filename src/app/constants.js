@@ -10,6 +10,8 @@ export const CREATOR_MODE = 'CREATOR_MODE'
 
 export const EDITOR_MODE =  'EDITOR_MODE'
 
+export const CLOSE_CREATOR = 'CLOSE_CREATOR'
+
 export const SET_VISIBILITY_FILTER = 'SET_VISIBILITY_FILTER'
 
 export const SHOW_ALL = 'SHOW_ALL'

@@ -5,6 +5,7 @@ import {
 	EDIT_TASK,
 	CREATOR_MODE,
 	EDITOR_MODE,
+	CLOSE_CREATOR,
 	SET_VISIBILITY_FILTER
 } from '../constants'
 
@@ -37,7 +38,6 @@ export function editTask(editedTask) {
 }
 
 export function creatorMode(){
-	console.log(CREATOR_MODE)
 	return {
 		type: CREATOR_MODE
 	}
@@ -47,6 +47,12 @@ export function editorMode(task){
 	return {
 		type: EDITOR_MODE,
 		task: task
+	}
+}
+
+export function closeCreator(){
+	return {
+		type: CLOSE_CREATOR
 	}
 }
 

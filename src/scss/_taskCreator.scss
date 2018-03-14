@@ -40,17 +40,24 @@
 	}
 
 	&__submit{
-		position: absolute;
 		bottom: 40px;
-		left: 5%;
-		text-align: center;
 		margin-top: 20px;
 		background-color: #00CC66;
 		border: none;
 		color: #fff;
 		border-radius: 3px;
-		padding: 20px 120px;
+		padding: 20px 0px;
 		font-size: 18px;
-		width: 90%;
+		width: 100%;
+	}
+	&__goBack{
+		margin-top: 20px;
+		font-size: 18px;
+		width: 100%;
+		color: #fff;
+		border: none;
+		background-color: #669999;
+		border-radius: 3px;
+		padding: 20px 0px;
 	}
 }

@@ -4,6 +4,7 @@ import React, {
 import {
 	addTask,
 	editTask,
+	closeCreator
 } from '../AC'
 import {
 	connect
@@ -25,25 +26,26 @@ class TaskCreatorContainer extends Component {
 
 		this.handleTitleChange = this.handleTitleChange.bind(this)
 		this.handleTextChange = this.handleTextChange.bind(this)
-		this.handleClick = this.handleClick.bind(this)
+		this.handleSubmit = this.handleSubmit.bind(this)
 		this.handleDateChange = this.handleDateChange.bind(this)
 		this.handleDatesInput = this.handleDatesInput.bind(this)
 		this.handleBackClick = this.handleBackClick.bind(this)
 	}
 	render() {
-		console.log(this.state.endDate)
 		return (
-			<TaskCreator handleOpen = {this.handleOpen}
-      handleTitleChange = {this.handleTitleChange}
-      handleTextChange = {this.handleTextChange}
-      handleClick = {this.handleClick}
-      title = {this.state.title}
-      text = {this.state.text}
-      focusedDatesInput = {this.state.focusedDatesInput}
-      endDate = {this.state.endDate}
-      handleDateChange = {this.handleDateChange}
-      handleDatesInput = {this.handleDatesInput}
-      />
+			<TaskCreator 
+	  			handleOpen = {this.handleOpen}
+				handleTitleChange = {this.handleTitleChange}
+				handleTextChange = {this.handleTextChange}
+				handleSubmit = {this.handleSubmit}
+				title = {this.state.title}
+				text = {this.state.text}
+				focusedDatesInput = {this.state.focusedDatesInput}
+				endDate = {this.state.endDate}
+				handleDateChange = {this.handleDateChange}
+				handleDatesInput = {this.handleDatesInput}
+				handleBackClick = {this.handleBackClick}
+			/>
 		)
 	}
 
@@ -52,8 +54,9 @@ class TaskCreatorContainer extends Component {
 			title: event.target.value
 		})
 	}
-	handleBackClick(){
 
+	handleBackClick(){
+		this.props.closeCreator()
 	}
 
 	handleTextChange(event) {
@@ -62,7 +65,7 @@ class TaskCreatorContainer extends Component {
 		})
 	}
 
-	handleClick(event) {
+	handleSubmit(event) {
 		const {
 			title,
 			text,
@@ -106,4 +109,4 @@ const mapStateToProps = (state) => ({
 	creator: state.creator
 })
 
-export default connect(mapStateToProps, {addTask, editTask})(TaskCreatorContainer)
+export default connect(mapStateToProps, {addTask, editTask, closeCreator})(TaskCreatorContainer)
