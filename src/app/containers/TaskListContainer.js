@@ -25,7 +25,7 @@ class TaskListContainer extends Component {
 }
 
 const mapStateToProps = (state) => ({
-	tasks: getVisibleTasks(state.tasks.reverse(), state.visibilityFilter),
+	tasks: getVisibleTasks(state.tasks.concat().reverse(), state.visibilityFilter),
 });
 
 export default connect(mapStateToProps)(TaskListContainer);

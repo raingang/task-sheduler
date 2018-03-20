@@ -54,7 +54,11 @@ class TaskContainer extends Component {
 	}
 }
 
-export default connect(null, {
+// Для того, чтобы при изменении состояния creator, вызывался render у task.
+// Грязный хак ><
+const mapStateToProps = state => ({ creator: state.creator })
+
+export default connect(mapStateToProps, {
 	completeTask,
 	deleteTask,
 	editorMode

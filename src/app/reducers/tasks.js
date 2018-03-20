@@ -46,12 +46,11 @@ const task = (state, action) => {
 
 		case (COMPLETE_TASK):
 			// находит искомый таск, делает копию с новым состоянием выполнения
-			const currentTask = state.find((item) => {
-				return item.id == action.payload
-			})
+			const currentTask = state.find((item) => item.id == action.payload)
 			return Object.assign({}, currentTask, {
 				completed: !currentTask.completed
 			})
+			
 		default:
 			return state
 	}
@@ -65,34 +64,16 @@ const tasks = (state = initialTasks, action) => {
 		case (COMPLETE_TASK):
 			// создаёт новый массив, где старый таск меняется на копию с новым состоянием
 			const completedTask = task(state, action)
-			const newState = state.reduce((prev, item) => {
-				if (completedTask.id == item.id) {
-					return prev.concat(completedTask)
-				} else {
-					return prev.concat(item)
-				}
-			}, [])
+			const newState = state.reduce((prev, item) => completedTask.id == item.id ? prev.concat(completedTask) : prev.concat(item), [])
 			return newState
 
 		case(EDIT_TASK):
 			const newTask = action.payload
-			return state.reduce((prev, item)=>{
-				if(newTask.id !== item.id){
-					return prev.concat(item)
-				} else{
-					return prev.concat(newTask)
-				}
-			},[])
+			return state.reduce((prev, item) => newTask.id !== item.id ? prev.concat(item) : prev.concat(newTask) , [])
 
 		case (DELETE_TASK):
 			// создаёт новый массив, без удаённого элемента
-			return state.reduce((prev, item) => {
-				if (action.payload !== item.id) {
-					return prev.concat(item)
-				} else {
-					return prev
-				}
-			}, [])
+			return state.reduce((prev, item) => action.payload !== item.id ? prev.concat(item) : prev, [])
 			
 		default:
 			return state

@@ -20152,7 +20152,15 @@ var TaskContainer = function (_Component) {
 	return TaskContainer;
 }(_react.Component);
 
-exports.default = (0, _reactRedux.connect)(null, {
+// Для того, чтобы при изменении состояния creator, вызывался render у task.
+// Грязный хак ><
+
+
+var mapStateToProps = function mapStateToProps(state) {
+	return { creator: state.creator };
+};
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps, {
 	completeTask: _AC.completeTask,
 	deleteTask: _AC.deleteTask,
 	editorMode: _AC.editorMode
@@ -40633,7 +40641,7 @@ var TaskListContainer = function (_Component) {
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
-    tasks: getVisibleTasks(state.tasks.reverse(), state.visibilityFilter)
+    tasks: getVisibleTasks(state.tasks.concat().reverse(), state.visibilityFilter)
   };
 };
 
@@ -40738,6 +40746,7 @@ var task = function task(state, action) {
 			return Object.assign({}, currentTask, {
 				completed: !currentTask.completed
 			});
+
 		default:
 			return state;
 	}
@@ -40755,32 +40764,20 @@ var tasks = function tasks() {
 			// создаёт новый массив, где старый таск меняется на копию с новым состоянием
 			var completedTask = task(state, action);
 			var newState = state.reduce(function (prev, item) {
-				if (completedTask.id == item.id) {
-					return prev.concat(completedTask);
-				} else {
-					return prev.concat(item);
-				}
+				return completedTask.id == item.id ? prev.concat(completedTask) : prev.concat(item);
 			}, []);
 			return newState;
 
 		case _constants.EDIT_TASK:
 			var newTask = action.payload;
 			return state.reduce(function (prev, item) {
-				if (newTask.id !== item.id) {
-					return prev.concat(item);
-				} else {
-					return prev.concat(newTask);
-				}
+				return newTask.id !== item.id ? prev.concat(item) : prev.concat(newTask);
 			}, []);
 
 		case _constants.DELETE_TASK:
 			// создаёт новый массив, без удаённого элемента
 			return state.reduce(function (prev, item) {
-				if (action.payload !== item.id) {
-					return prev.concat(item);
-				} else {
-					return prev;
-				}
+				return action.payload !== item.id ? prev.concat(item) : prev;
 			}, []);
 
 		default:
@@ -40838,8 +40835,10 @@ var visibilityFilter = function visibilityFilter() {
 	var action = arguments[1];
 
 	switch (action.type) {
+
 		case _constants.SET_VISIBILITY_FILTER:
 			return action.filter;
+
 		default:
 			return state;
 	}
